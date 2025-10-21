@@ -13,14 +13,14 @@
 tailwind.config={theme:{extend:{colors:{
  brand:{500:'#0ea5a4',600:'#0f766e'}, gov:{600:'#2563eb',700:'#1e40af'},
  steel:{50:'#f8fafc',100:'#f1f5f9',200:'#e2e8f0',500:'#64748b',700:'#334155',900:'#0f172a'}
-},fontFamily:{sans:['Tajawal','ui-sans-serif','system-ui']}}},darkMode:['class','[data-theme="dark"]']};
+},fontFamily:{sans:['Tajawal','ui-sans-serif','system-ui']}}}};
 </script>
 <style>
 :root{--brand:#0ea5a4;--gov:#2563eb}
 *{box-sizing:border-box} html{scroll-behavior:smooth}
 body{font-family:'Tajawal',system-ui;background:#f8fafc;color:#0f172a}
 .section{scroll-margin-top:88px}
-.glass{backdrop-filter:saturate(160%) blur(10px); background:rgba(255,255,255,.78)}
+.glass{backdrop-filter:saturate(160%) blur(10px); background:rgba(255,255,255,.8)}
 .card{background:#fff;border:1px solid #e2e8f0;border-radius:1.25rem}
 .input{border:1px solid #e2e8f0;border-radius:.9rem;padding:.65rem .9rem;background:#fff;width:100%}
 .btn{border:1px solid #e2e8f0;border-radius:.9rem;padding:.6rem .9rem;background:#fff}
@@ -44,11 +44,11 @@ body{font-family:'Tajawal',system-ui;background:#f8fafc;color:#0f172a}
       <div class="flex items-center justify-between gap-3">
         <!-- يسار: الرؤية + تلبية -->
         <div class="flex items-center gap-2">
-          <a href="https://www.vision2030.gov.sa/en" target="_blank" rel="noopener" title="Saudi Vision 2030">
-            <img class="logo" alt="Vision 2030" src='data:image/svg+xml;utf8,<?xml version="1.0"?><svg xmlns="http://www.w3.org/2000/svg" width="160" height="40"><rect width="160" height="40" rx="8" fill="%23eef2ff"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Tajawal,Arial" font-weight="700" font-size="16" fill="%231e40af">VISION 2030</text></svg>'/>
+          <a href="https://www.vision2030.gov.sa/" target="_blank" rel="noopener" title="رؤية السعودية 2030">
+            <img class="logo" src="./Vision2030.png" alt="Vision 2030">
           </a>
-          <a href="https://talbiya.sa/ar" target="_blank" rel="noopener" title="مبادرة تلبية">
-            <img class="logo" alt="Talbiya" src='data:image/svg+xml;utf8,<?xml version="1.0"?><svg xmlns="http://www.w3.org/2000/svg" width="140" height="40"><rect width="140" height="40" rx="8" fill="%23ecfeff"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Tajawal,Arial" font-weight="700" font-size="16" fill="%230f766e">TALBIYA</text></svg>'/>
+          <a href="https://talbiya.sa/" target="_blank" rel="noopener" title="مبادرة تلبية">
+            <img class="logo" src="./talbiya.png" alt="Talbiya">
           </a>
         </div>
 
@@ -64,7 +64,7 @@ body{font-family:'Tajawal',system-ui;background:#f8fafc;color:#0f172a}
 
         <!-- يمين: حصيف + جلسة -->
         <div class="flex items-center gap-2">
-          <img class="logo" alt="Hasseef" src='data:image/svg+xml;utf8,<?xml version="1.0"?><svg xmlns="http://www.w3.org/2000/svg" width="140" height="40"><rect width="140" height="40" rx="8" fill="%23d1fae5"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Tajawal,Arial" font-weight="900" font-size="18" fill="%23047557">حـصـيـف</text></svg>'/>
+          <img class="logo" src="./hasseef.png" alt="Hasseef">
           <span id="sessionUser" class="hidden text-sm text-slate-600">• المستخدم: <strong>Admin</strong></span>
           <button id="menuBtn" class="md:hidden btn" aria-label="القائمة">☰</button>
         </div>
@@ -132,26 +132,21 @@ body{font-family:'Tajawal',system-ui;background:#f8fafc;color:#0f172a}
       </div>
       <input id="accountSearch" type="search" placeholder="ابحث..." class="input w-full sm:w-72">
     </div>
-
     <div id="accountGrid" class="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
   </div>
 </section>
 
-<!-- MAP & KPIs (مفعّلة بدون ملفات خارجية) -->
+<!-- MAP & KPIs -->
 <section id="map" class="section">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <h2 class="text-2xl sm:text-3xl font-black">الخريطة والمؤشرات</h2>
-    <p class="text-sm text-slate-600">نسخة تفاعلية جاهزة الآن — dataset داخلي، ويمكن لاحقًا استبداله بـ GeoJSON رسمي.</p>
-
+    <p class="text-sm text-slate-600">مفعّلة الآن ببيانات داخلية — يمكن لاحقًا استبدالها بملف GeoJSON رسمي دون تغيير الواجهة.</p>
     <div class="mt-6 grid lg:grid-cols-3 gap-4">
       <div class="lg:col-span-2 card p-6">
-        <div class="grid grid-cols-2 sm:grid-cols-3 gap-2" id="regionList"></div>
-        <div class="mt-4 card p-4">
-          <div class="text-xs text-slate-500">ملاحظة: يمكن توصيل الخرائط الرسمية لاحقًا بدون تغيير الواجهة.</div>
-        </div>
+        <div id="regionList" class="grid grid-cols-2 sm:grid-cols-3 gap-2"></div>
       </div>
       <div class="card p-6">
-        <div class="kpi"><div class="kpi-label">المنطقة</div><div id="selRegion" class="kpi-value">حائل</div></div>
+        <div class="kpi"><div class="kpi-label">المنطقة</div><div id="selRegion" class="kpi-value">—</div></div>
         <div class="grid grid-cols-3 gap-2 mt-3">
           <div class="kpi"><div class="kpi-label">وظائف</div><div id="kpiJobs" class="kpi-value">—</div></div>
           <div class="kpi"><div class="kpi-label">منح</div><div id="kpiGrants" class="kpi-value">—</div></div>
@@ -247,12 +242,9 @@ body{font-family:'Tajawal',system-ui;background:#f8fafc;color:#0f172a}
   </div>
 </footer>
 
-<!-- Chart.js (lazy) -->
-<script defer src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
-
 <script>
-/* ========== حالة عامة ========== */
-const KEY='hasseef_final_v1';
+/* ======= حالة عامة ======= */
+const KEY='hasseef_full_v2';
 let state=(()=>{try{return JSON.parse(localStorage.getItem(KEY))}catch(_){}})()||{account:null,rows:{},roles:{},role:'المشرف العام',session:null};
 function save(){localStorage.setItem(KEY,JSON.stringify(state))}
 const $=(s,c=document)=>c.querySelector(s); const $$=(s,c=document)=>Array.from(c.querySelectorAll(s));
@@ -268,7 +260,7 @@ const DEFAULT_PERMS={
 };
 ROLES.forEach(r=>{state.roles[r]=state.roles[r]||Object.fromEntries(PERMS.map(p=>[p,DEFAULT_PERMS[r].includes(p)]))});
 
-/* الحسابات + تبويباتها الكاملة */
+/* الحسابات + تبويباتها */
 const ACCOUNTS=['الأفراد','القطاع الخاص','القطاع غير الربحي','الجامعات','الجهات الحكومية','الجهات التمويلية','إمارة المنطقة','هيئات التطوير','إدارة المنصة'];
 const ACCOUNT_TABS={
  'الأفراد':['المبادرات','الفرص','التطوع','التدريب','التوظيف','الفعاليات','المحفظة','التقارير'],
@@ -282,7 +274,7 @@ const ACCOUNT_TABS={
  'إدارة المنصة':['الحسابات والحوكمة','الصلاحيات','التكامل والبيانات','الإشعارات','الدعم','التقارير','إدارة الصلاحيات والأدوار']
 };
 
-/* تعريف الجداول لكل تبويب */
+/* تعريف الحقول لكل تبويب */
 function schemaFor(tab){
  switch(tab){
   case'المبادرات':case'المشاريع':return[['title','العنوان'],['owner','الجهة'],['budget','الميزانية (ر.س)'],['region','المنطقة'],['status','الحالة']];
@@ -303,12 +295,13 @@ function schemaFor(tab){
  }
 }
 
-/* مساعدات */
-function can(p){return !!state.roles?.[state.role]?.[p]}
-function chip(r){return `<span class="smart-chip">🎯 ${(r._tags||[]).map(x=>x.code).join('·')||'—'} • 🤝 ${(r._match||'—')} • ⚠️ ${(r._risk||'—')}</span>`}
-function enrich(row){ // تصنيف بسيط + مخاطرة + تطابق شريك
-  const tagsSrc=(row.title||'')+' '+(row.note||''); const tags=[
-    ['QOL',['ثقافة','رياضة','ترفيه','سياحة']],['HEALTH',['صحة','طبي']],['EDU',['تعليم','جامعة','تدريب']],['ECON',['وظائف','استثمار','منشآت','ريادة']],['ENV',['بيئة','تشجير','مياه']],['GOV',['حكومة','تصاريح','خدمات']]
+/* مساعدات ذكاء محلي بسيط */
+function enrich(row){
+  const tagsSrc=(row.title||'')+' '+(row.note||'');
+  const tags=[
+    ['QOL',['ثقافة','رياضة','ترفيه','سياحة']],['HEALTH',['صحة','طبي']],
+    ['EDU',['تعليم','جامعة','تدريب']],['ECON',['وظائف','استثمار','منشآت','ريادة']],
+    ['ENV',['بيئة','تشجير','مياه']],['GOV',['حكومة','تصاريح','خدمات']]
   ].map(([c,ws])=>({code:c,score:ws.reduce((a,w)=>a+(tagsSrc.includes(w)?1:0),0)})).filter(x=>x.score>0).sort((a,b)=>b.score-a.score);
   row._tags=tags.slice(0,2);
   const risk=((+row.budget||0)>50000?2:0)+(/فعالية|تجمع/.test(row.title||'')?1:0); row._risk=risk>=3?'مرتفع':risk==2?'متوسط':'منخفض';
@@ -316,22 +309,18 @@ function enrich(row){ // تصنيف بسيط + مخاطرة + تطابق شري�
   const match = partners.map(p=>({name:p.n,score:p.f.some(f=>row._tags.some(t=>t.code===f))?0.9:0.3})).sort((a,b)=>b.score-a.score)[0];
   row._match = match? `${match.name} (${Math.round(match.score*100)}%)`:'—';
 }
+function chip(r){return `<span class="smart-chip">🎯 ${(r._tags||[]).map(x=>x.code).join('·')||'—'} • 🤝 ${(r._match||'—')} • ⚠️ ${(r._risk||'—')}</span>`}
+function can(p){return !!state.roles?.[state.role]?.[p]}
 
 /* تنقل */
 $('#menuBtn')?.addEventListener('click',()=>$('#mobileMenu').classList.toggle('hidden'));
 $$('[data-goto]').forEach(a=>a.addEventListener('click',()=>{location.hash=a.getAttribute('data-goto');$('#mobileMenu')?.classList.add('hidden')}));
 
-/* دخول — إجبار Admin + زر دخول سريع */
-const fAcc=$('#fAccount');
-fAcc.innerHTML=ACCOUNTS.map(a=>`<option>${a}</option>`).join('');
-$('#quickLogin').addEventListener('click',()=>{state.session={user:'Admin',ts:Date.now(),remember:true}; state.account=fAcc.value; save(); $('#sessionUser').classList.remove('hidden'); $('#sessionUser strong').textContent='Admin'; seed(state.account); openDashboard(state.account); location.hash='#dashboard';});
-$('#loginForm').addEventListener('submit',e=>{
-  e.preventDefault();
-  const pass=$('#fPass').value.trim(); if(!pass){$('#loginMsg').classList.remove('hidden');return}
-  state.session={user:'Admin',ts:Date.now(),remember:$('#fRemember').checked}; // اسم المستخدم يُثبت Admin
-  state.account=fAcc.value; save(); $('#sessionUser').classList.remove('hidden'); $('#sessionUser strong').textContent='Admin';
-  seed(state.account); openDashboard(state.account); location.hash='#dashboard';
-});
+/* دخول — Admin دائم + زر سريع */
+const fAcc=$('#fAccount'); fAcc.innerHTML=ACCOUNTS.map(a=>`<option>${a}</option>`).join('');
+function startSession(){state.session={user:'Admin',ts:Date.now(),remember:true}; $('#sessionUser').classList.remove('hidden'); $('#sessionUser strong').textContent='Admin'; save();}
+$('#quickLogin').onclick=()=>{startSession(); state.account=fAcc.value; seed(state.account); openDashboard(state.account); location.hash='#dashboard';};
+$('#loginForm').addEventListener('submit',e=>{e.preventDefault(); startSession(); state.account=fAcc.value; save(); seed(state.account); openDashboard(state.account); location.hash='#dashboard';});
 
 /* شبكة الحسابات — فتح مباشر */
 function buildAccounts(){
@@ -354,11 +343,9 @@ function openDashboard(acc){
   tabsEl.innerHTML=tabs.map((t,i)=>`<button class="btn ${i? '':'btn-primary'}" data-tab="${t}" aria-selected="${!i}">${t}</button>`).join('');
   panels.innerHTML=tabs.map((t,i)=>`<div class="${i?'hidden':''}" data-panel="${t}">${panel(acc,t)}</div>`).join('');
   $$('#tabs [data-tab]').forEach(b=>b.onclick=()=>switchTab(b.dataset.tab));
-  bindHandlers();
-  refreshKPIs();
+  bindHandlers(); refreshKPIs();
 }
 function switchTab(tab){ $$('#tabs [data-tab]').forEach(b=>{const on=b.dataset.tab===tab; b.classList.toggle('btn-primary',on); b.setAttribute('aria-selected',on)}); $$('#panels [data-panel]').forEach(p=>p.classList.toggle('hidden',p.dataset.panel!==tab));}
-
 function panel(acc,tab){
   if(tab==='إدارة الصلاحيات والأدوار') return rolesPanel();
   const key=acc+'::'+tab, schema=schemaFor(tab);
@@ -392,11 +379,11 @@ function rolesPanel(){
   </div>`;
 }
 function bindHandlers(){
-  $$('[data-add]').forEach(b=>b.onclick=()=>{if(!can('تعديل البيانات'))return alert('صلاحية غير كافية'); const key=b.dataset.add; const schema=schemaFor(key.split('::')[1]); const row={}; schema.forEach(s=>row[s[0]]=prompt('أدخل '+s[1])||''); enrich(row); (state.rows[key]=state.rows[key]||[]).push(row); save(); renderTable(key,true); refreshKPIs();});
+  $$('[data-add]').forEach(b=>b.onclick=()=>{if(!can('تعديل البيانات'))return alert('صلاحية غير كافية'); const key=b.dataset.add; const schema=schemaFor(key.split('::')[1]); const row={}; schema.forEach(s=>row[s[0]]=prompt('أدخل '+s[1])||''); enrich(row); (state.rows[key]=state.rows[key]||[]).push(row); save(); renderTable(key); refreshKPIs();});
   $$('[data-export]').forEach(b=>b.onclick=()=>{if(!can('توليد التقارير'))return alert('صلاحية غير كافية'); const key=b.dataset.export, list=state.rows[key]||[]; if(!list.length)return alert('لا بيانات'); const headers=Object.keys(list[0]); const csv=[headers.join(',')].concat(list.map(r=>headers.map(h=>JSON.stringify(r[h]??'')).join(','))).join('\n'); const url=URL.createObjectURL(new Blob([csv],{type:'text/csv'})); const a=document.createElement('a'); a.href=url; a.download=key.replaceAll('::','_')+'.csv'; a.click(); setTimeout(()=>URL.revokeObjectURL(url),500);});
   $$('[data-wf]').forEach(b=>b.onclick=()=>alert('سير الموافقات (تجريبي):\n• تقديم → مراجعة لجنة → توقيع رقمي → تنفيذ'));
   if($('#rolesSave')){$('#rolesSave').onclick=()=>{save(); alert('تم الحفظ')}; $('#rolesReset').onclick=()=>{state.roles={}; ROLES.forEach(r=>state.roles[r]=Object.fromEntries(PERMS.map(p=>[p,DEFAULT_PERMS[r].includes(p)]))); save(); openDashboard(state.account)}; $$('input[type="checkbox"][data-role]').forEach(ch=>ch.onchange=()=>{state.roles[ch.dataset.role][ch.dataset.perm]=ch.checked; save();});}
-  Object.keys(state.rows).forEach(k=>renderTable(k,false));
+  Object.keys(state.rows).forEach(k=>renderTable(k));
 }
 function renderTable(key){
   const el=document.getElementById('tbl::'+key); if(!el) return;
@@ -428,7 +415,7 @@ function refreshKPIs(){
   $('#kpiImpact').textContent=impact;
 }
 
-/* تعبئة تلقائية قوية لكل حساب */
+/* تعبئة أولية كاملة لكل حساب */
 function seed(acc){
   const push=(tab,rows)=>state.rows[acc+'::'+tab]=rows;
   (ACCOUNT_TABS[acc]||[]).forEach(tab=>{
@@ -451,7 +438,7 @@ function seed(acc){
   save();
 }
 
-/* خريطة (Dataset داخلي مفعّل فورًا) */
+/* خريطة — Dataset داخلي */
 const REGIONS=[
  {id:'Hail',name:'حائل',jobs:72,grants:18,vols:220},
  {id:'Riyadh',name:'الرياض',jobs:310,grants:95,vols:920},
@@ -475,12 +462,12 @@ function renderRegions(){
 renderRegions();
 
 /* دعم */
-const sendBtn=$('#sendBtn'), sendRes=$('#sendResult'); sendBtn?.addEventListener('click',()=>{if(!$('#consent').checked){sendRes.textContent='فضلاً وافق على سياسة الخصوصية.'; sendRes.className='lg:col-span-2 text-sm text-red-700 bg-red-50 border border-red-200 rounded-xl px-4 py-3'; sendRes.classList.remove('hidden');return;} sendRes.textContent='تم استلام الرسالة — شكرًا لكم!'; sendRes.className='lg:col-span-2 text-sm text-emerald-800 bg-emerald-50 border border-emerald-200 rounded-xl px-4 py-3'; sendRes.classList.remove('hidden')});
+$('#sendBtn')?.addEventListener('click',()=>{const res=$('#sendResult'); if(!$('#consent').checked){res.textContent='فضلاً وافق على سياسة الخصوصية.'; res.className='lg:col-span-2 text-sm text-red-700 bg-red-50 border border-red-200 rounded-xl px-4 py-3'; res.classList.remove('hidden');return;} res.textContent='تم الاستلام — شكرًا لكم!'; res.className='lg:col-span-2 text-sm text-emerald-800 bg-emerald-50 border border-emerald-200 rounded-xl px-4 py-3'; res.classList.remove('hidden')});
 
 /* طباعة */
 $('#printBtn')?.addEventListener('click',()=>window.print());
 
-/* تهيئة أولية */
+/* تهيئة */
 if(!state.session){state.session={user:'Admin',ts:Date.now(),remember:true}; save();}
 $('#sessionUser').classList.remove('hidden'); $('#sessionUser strong').textContent='Admin';
 </script>
