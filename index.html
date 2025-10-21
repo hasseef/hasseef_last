@@ -8,7 +8,7 @@
 <!-- Fonts + Tailwind -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
 tailwind.config={theme:{extend:{colors:{
@@ -41,10 +41,14 @@ tailwind.config={theme:{extend:{colors:{
   <nav class="mx-auto max-w-7xl px-3 sm:px-6 lg:px-8 py-2">
     <div class="glass shadow px-3 sm:px-4 py-2 rounded-2xl">
       <div class="flex items-center justify-between gap-2">
-        <!-- Left logos: Vision + Talbiya -->
+        <!-- Left logos: Vision 2030 + Talbiya (linked) -->
         <div class="flex items-center gap-2">
-          <img class="logo" alt="Vision 2030" src='data:image/svg+xml;utf8,<?xml version="1.0"?><svg xmlns="http://www.w3.org/2000/svg" width="160" height="40"><rect width="160" height="40" rx="8" fill="%23eef2ff"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Tajawal,Arial" font-weight="700" font-size="16" fill="%231e40af">VISION 2030</text></svg>'/>
-          <img class="logo" alt="Talbiya" src='data:image/svg+xml;utf8,<?xml version="1.0"?><svg xmlns="http://www.w3.org/2000/svg" width="140" height="40"><rect width="140" height="40" rx="8" fill="%23ecfeff"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Tajawal,Arial" font-weight="700" font-size="16" fill="%230f766e">TALBIYA</text></svg>'/>
+          <a href="https://www.vision2030.gov.sa/en" target="_blank" rel="noopener" title="Saudi Vision 2030">
+            <img class="logo" alt="Vision 2030" src='data:image/svg+xml;utf8,<?xml version="1.0"?><svg xmlns="http://www.w3.org/2000/svg" width="160" height="40"><rect width="160" height="40" rx="8" fill="%23eef2ff"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Tajawal,Arial" font-weight="700" font-size="16" fill="%231e40af">VISION 2030</text></svg>'/>
+          </a>
+          <a href="https://talbiya.sa/ar" target="_blank" rel="noopener" title="مبادرة تلبية">
+            <img class="logo" alt="Talbiya" src='data:image/svg+xml;utf8,<?xml version="1.0"?><svg xmlns="http://www.w3.org/2000/svg" width="140" height="40"><rect width="140" height="40" rx="8" fill="%23ecfeff"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Tajawal,Arial" font-weight="700" font-size="16" fill="%230f766e">TALBIYA</text></svg>'/>
+          </a>
         </div>
 
         <!-- Desktop nav -->
@@ -58,9 +62,10 @@ tailwind.config={theme:{extend:{colors:{
           <a class="nav-pill" data-goto="#support">الدعم</a>
         </div>
 
-        <!-- Right logo: Hasseef -->
+        <!-- Right: Hasseef + session -->
         <div class="flex items-center gap-2">
           <img class="logo" alt="Hasseef" src='data:image/svg+xml;utf8,<?xml version="1.0"?><svg xmlns="http://www.w3.org/2000/svg" width="140" height="40"><rect width="140" height="40" rx="8" fill="%23d1fae5"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Tajawal,Arial" font-weight="900" font-size="18" fill="%23047557">حـصـيـف</text></svg>'/>
+          <span id="sessionUser" class="hidden text-sm text-steel-600">• المستخدم: <strong>Admin</strong></span>
           <button id="menuBtn" class="md:hidden btn" aria-label="القائمة">☰</button>
         </div>
       </div>
@@ -89,7 +94,7 @@ tailwind.config={theme:{extend:{colors:{
     <div class="grid lg:grid-cols-2 gap-6">
       <div class="card p-6">
         <h1 class="text-2xl sm:text-3xl font-black">منصة حصيف الوطنية للتكامل التنموي</h1>
-        <p class="mt-2 text-steel-700">بوابة وطنية تربط القطاعات (الحكومي، الخاص، غير الربحي، الأكاديمي، التمويل) لتحقيق مستهدفات رؤية 2030 عبر نماذج موحّدة، صلاحيات دقيقة، وسير موافقات متعدّد المراحل.</p>
+        <p class="mt-2 text-steel-700">بوابة وطنية تربط القطاعات لتحقيق مستهدفات رؤية 2030 عبر نماذج موحّدة، صلاحيات دقيقة، وسير موافقات متعدّد المراحل.</p>
         <ul class="mt-4 text-sm text-steel-700 space-y-2">
           <li>🧭 مواءمة تلقائية لأهداف الرؤية + اعتماد بشري.</li>
           <li>🤝 شراكات وتشبيك ذكي بين الجهات.</li>
@@ -102,7 +107,7 @@ tailwind.config={theme:{extend:{colors:{
         <form id="loginForm" class="mt-4 grid sm:grid-cols-2 gap-3">
           <div class="sm:col-span-1">
             <label class="text-sm font-semibold">اسم المستخدم</label>
-            <input id="fUser" class="input w-full" placeholder="example@domain.sa" required>
+            <input id="fUser" class="input w-full" placeholder="Admin" value="Admin" required>
           </div>
           <div class="sm:col-span-1">
             <label class="text-sm font-semibold">كلمة المرور</label>
@@ -190,9 +195,9 @@ tailwind.config={theme:{extend:{colors:{
         </ul>
       </div>
       <div class="card p-5">
-        <h3 class="font-extrabold">طبقات الصلاحيات</h3>
+        <h3 class="font-extrabول">طبقات الصلاحيات</h3>
         <ul class="mt-2 text-sm text-steel-700 space-y-2">
-          <li>المشرف العام، مدير النظام، مشغّل، مراقب، زائر، ممثل جهة شريكة (قابلة للتعديل من الواجهة).</li>
+          <li>المشرف العام، مدير النظام، مشغّل، مراقب، زائر، ممثل جهة شريكة — قابلة للتعديل من الواجهة.</li>
         </ul>
       </div>
     </div>
@@ -329,7 +334,7 @@ const DEFAULT_PERMS={
  'زائر':[],
  'ممثل جهة شريكة':['اعتماد المشاريع','توليد التقارير']
 };
-ROLES.forEach(r=>{state.roles[r]=state.roles[r]||Object.fromEntries(PERMS.map(p=>[p,DEFAULT_PERMS[r].includes(p)]))});
+ROLES.forEach(r=>{state.roles[r]=state.roles[r]||Object.fromEntries(PERMS.map(p=>[p,DEFAULT_PERMS[r].includes(p)]))})
 
 /* ====== DATA (Accounts & Tabs & Modal details) ====== */
 const ACCOUNTS=[
@@ -384,18 +389,19 @@ function schemaFor(tab){
 $('#menuBtn')?.addEventListener('click',()=>$('#mobileMenu').classList.toggle('hidden'));
 $$('[data-goto]').forEach(a=>a.addEventListener('click',()=>{location.hash=a.getAttribute('data-goto');$('#mobileMenu')?.classList.add('hidden')}));
 
-/* ====== LOGIN FLOW ====== */
-const fAccount=$('#fAccount'); fAccount.innerHTML=ACCOUNTS.map(a=>`<option>${a}</option>`).join('');
+/* ====== LOGIN FLOW (force Admin) ====== */
+const fAccount=$('#fAccount'); fAccount.innerHTML=(['الأفراد','القطاع الخاص','القطاع غير الربحي','الجامعات','الجهات الحكومية','الجهات التمويلية','إمارة المنطقة','هيئات التطوير','إدارة المنصة']).map(a=>`<option>${a}</option>`).join('');
 $('#loginForm').addEventListener('submit',e=>{
   e.preventDefault();
-  const u=$('#fUser').value.trim(), p=$('#fPass').value.trim(); if(!u||!p){$('#loginMsg').classList.remove('hidden');return}
-  state.session={user:u,ts:Date.now(),remember:$('#fRemember').checked}; state.account=$('#fAccount').value; save();
+  const p=$('#fPass').value.trim(); if(!p){$('#loginMsg').classList.remove('hidden');return}
+  state.session={user:'Admin',ts:Date.now(),remember:$('#fRemember').checked}; // إجبار اسم المستخدم = Admin
+  state.account=$('#fAccount').value; save();
+  $('#sessionUser').classList.remove('hidden'); $('#sessionUser strong').textContent='Admin';
   openDashboard(state.account);
   location.hash='#dashboard';
 });
 
 /* ====== ACCOUNTS GRID + SEARCH + MODAL ====== */
-const detailsMap=ACCOUNT_DETAILS;
 function buildGrid(){
  const g=$('#accountGrid'); const q=($('#accountSearch')?.value||'').trim();
  const list=ACCOUNTS.filter(n=>!q||n.includes(q));
@@ -409,7 +415,7 @@ function buildGrid(){
  }).join('');
  $$('#accountGrid [data-acc]').forEach(b=>b.addEventListener('click',()=>{
    const n=b.getAttribute('data-acc'); const title=(n.startsWith('حساب')?n:'حساب '+n);
-   const d=detailsMap[title]||{sub:'—',services:[],perms:[],api:'—',value:'—'};
+   const d=(ACCOUNT_DETAILS[title]||{sub:'—',services:[],perms:[],api:'—',value:'—'});
    $('#modalTitle').textContent=title; $('#modalSub').textContent=d.sub;
    $('#modalServices').innerHTML=(d.services||[]).map(s=>`<li>${s}</li>`).join('')||'<li>—</li>';
    $('#modalPerms').innerHTML=(d.perms||[]).map(s=>`<li>${s}</li>`).join('')||'<li>—</li>';
@@ -426,6 +432,7 @@ $('#accountModal')?.addEventListener('click',e=>{if(e.target.hasAttribute('data-
 function openDashboard(name){
  state.account=name||state.account; if(!state.account) return;
  $('#dashTitle').textContent='لوحة حساب — '+state.account;
+ $('#sessionUser').classList.remove('hidden'); $('#sessionUser strong').textContent='Admin';
  buildTabs(state.account); refreshKPIs();
 }
 function buildTabs(acc){
@@ -510,7 +517,7 @@ function refreshKPIs(){
 /* ====== SIMPLE AI HINTS (local) ====== */
 const TAGS=[{c:'QOL',w:['ثقافة','رياضة','ترفيه','سياحة']},{c:'HEALTH',w:['صحة','علاج','طبي']},{c:'EDU',w:['تعليم','تدريب','جامعة','مهارات']},{c:'ECON',w:['وظائف','استثمار','منشآت','ريادة']},{c:'ENV',w:['بيئة','تشجير','نفايات','مياه']},{c:'GOV',w:['حكومة','تصاريح','خدمات']}];
 function classify(text){text=(text||'').toLowerCase();const s={};TAGS.forEach(t=>s[t.c]=t.w.reduce((a,k)=>a+(text.includes(k.toLowerCase())?1:0),0));return Object.entries(s).filter(([,v])=>v>0).map(([c,v])=>({code:c,score:v})).sort((a,b)=>b.score-a.score).slice(0,2)}
-function matchPartners(row){const p=[{n:'مركز أداء',f:['GOV','ECON']},{n:'NCDC',f:['GOV','QOL']},{n:"Monsha'at",f:['ECON']},{n:'جامعة حائل',f:['EDU','ENV']},{n:'شركة وطنية (CSR)',f:['QOL','ENV','EDU']}];const tags=classify((row.title||'')+' '+(row.note||'')).map(x=>x.code);return p.map(x=>({name:x.n,score:+(x.f.some(f=>tags.includes(f))?0.9:0.3).toFixed(2)})).sort((a,b)=>b.score-a.score)}
+function matchPartners(row){const p=[{n:'مركز أداء',f:['GOV','ECON']},{n:'NCDC',f:['GOV','QOL']},{n:"Monsha'at",f:['ECON']},{n:'جامعة حائل',f:['EDU','ENV']},{n:'شركة وطنية (CSR)',f:['QOL','ENV','EDU']}];const tags=classify((row.title||'')+' '+(row.note||'')).map(x=>x.code);return p.map(x=>({name:x.n,score:+(x.f.some(f=>tags.includes(f))?0.9:0.3).toFixed(2)})).sort((a,b)=>b.score-a-score)}
 function risk(row){let r=0; if((+row.budget||0)>50000) r+=2; if(/فعالية|تجمع/.test(row.title||'')) r+=1; return {level:r>=3?'مرتفع':r==2?'متوسط':'منخفض'}}
 function enrichRow(r){r._tags=classify((r.title||'')+' '+(r.note||'')); r._matches=matchPartners(r); r._risk=risk(r)}
 function smartChip(r){const t=(r._tags||[]).map(x=>x.code).join('·')||'—'; const m=(r._matches||[])[0]; const best=m?`${m.name} (${(m.score*100).toFixed(0)}%)`:'—'; const rk=r._risk?r._risk.level:'—'; return `<span class="smart-chip">🎯 ${t} • 🤝 ${best} • ⚠️ ${rk}</span>`}
@@ -530,11 +537,8 @@ const sendBtn=$('#sendBtn'), sendRes=$('#sendResult'); sendBtn?.addEventListener
 $('#printBtn')?.addEventListener('click',()=>window.print());
 
 /* ====== INIT ====== */
-function renderAccounts(){ // for login select
-  fAccount.innerHTML=ACCOUNTS.map(a=>`<option>${a}</option>`).join('');
-}
+function renderAccounts(){ fAccount.innerHTML=ACCOUNTS.map(a=>`<option>${a}</option>`).join(''); }
 function panelSeed(acc){
-  // تعبئة سريعة لعرض قوي
   const push=(tab,rows)=>state.rows[acc+'::'+tab]=rows;
   (ACCOUNT_TABS[acc]||[]).forEach(tab=>{
     switch(tab){
@@ -549,7 +553,6 @@ function panelSeed(acc){
   Object.keys(state.rows).forEach(k=>{if(k.startsWith(acc+'::')&&(k.endsWith('المبادرات')||k.endsWith('المشاريع')))(state.rows[k]||[]).forEach(enrichRow)});
   save();
 }
-function refreshKPIsOnAccount(acc){ state.account=acc; save(); refreshKPIs(); }
 function buildAccountsSection(){
   const grid=$('#accountGrid');
   grid.innerHTML=ACCOUNTS.map(n=>`<button class="text-start card p-5 hover:shadow" data-open="${n}"><div class="flex items-center justify-between"><h3 class="font-extrabold">حساب ${n}</h3><span class="text-xs rounded-full bg-emerald-50 text-emerald-700 px-3 py-1">كامل الخدمات</span></div><p class="mt-2 text-sm text-steel-700">استعراض خدمات ${n}.</p></button>`).join('');
